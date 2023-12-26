@@ -1,0 +1,61 @@
+stages:
+  feature_engineering:
+    cmd: python src/feature_engineering.py --config=params.yaml
+    deps:
+    - data/raw/nyc_taxi_trip_duration.csv
+    - src/feature_engineering.py
+    outs:
+    - data/feature_engineering/feature_engineering_data.csv
+
+  feature_selection:
+    cmd: python src/feature_selection.py --config=params.yaml
+    deps:
+    - data/feature_engineering/feature_engineering_data.csv
+    - src/feature_selection.py
+    params:
+    - feature_selection.cont_cols
+    - feature_selection.drop_columns
+    - feature_selection.split
+    - feature_selection.objective
+    - feature_selection.eval_metric
+    - feature_selection.eta
+    - feature_selection.min_child_weight
+    - feature_selection.subsample
+    - feature_selection.colsample_bytree
+    - feature_selection.max_depth
+    - feature_selection.seed
+    - feature_selection.nthread
+    - feature_selection.lambda
+    - feature_selection.epoches
+    - feature_selection.early_stopping_rounds
+    outs:
+    - data/feature_selection/feature_selection_data.csv
+ 
+  training:
+    cmd: python src/training.py --config=params.yaml
+    deps:
+    - data/feature_selection/feature_selection_data.csv
+    - src/training.py
+    params:
+    - training.split
+    - training.iterations
+    - training.learning_rate
+    - training.depth
+    - training.eval_metric
+    - training.random_seed
+    - training.bagging_temperature
+    - training.od_type
+    - training.metric_period
+    - training.od_wait
+    - training.task_type
+    - mlflow_config.experiment_name
+    - mlflow_config.run_name
+    - mlflow_config.registered_model_name
+    - mlflow_config.remote_server_uri
+
+  # log_production_model:
+  #   cmd: python src/log_production_model.py --config=params.yaml
+  #   deps:
+  #   - src/log_production_model.py
+  #   params:
+  #   - mlflow_config.experiment_ids

@@ -1,0 +1,99 @@
+schema: '2.0'
+stages:
+  feature_engineering:
+    cmd: python src/feature_engineering.py --config=params.yaml
+    deps:
+    - path: data/raw/nyc_taxi_trip_duration.csv
+      md5: a9e02836b4df816dc0ee6f12f94bfb36
+      size: 76450180
+    - path: src/feature_engineering.py
+      md5: 949bb907562d80a744363d565f6a3da0
+      size: 3355
+    outs:
+    - path: data/feature_engineering/feature_engineering_data.csv
+      md5: edd10b4018fcd226139139adaf159d6e
+      size: 106920596
+  feature_selection:
+    cmd: python src/feature_selection.py --config=params.yaml
+    deps:
+    - path: data/feature_engineering/feature_engineering_data.csv
+      md5: edd10b4018fcd226139139adaf159d6e
+      size: 106920596
+    - path: src/feature_selection.py
+      md5: 50bc1f3116025852e91f48d97757eaeb
+      size: 2860
+    params:
+      params.yaml:
+        feature_selection.colsample_bytree: 0.7
+        feature_selection.cont_cols:
+        - pickup_longitude
+        - pickup_latitude
+        - dropoff_longitude
+        - dropoff_latitude
+        - trip_duration
+        - distance
+        - l50distance
+        - pickup_latitude_round3
+        - pickup_longitude_round3
+        - dropoff_latitude_round3
+        - dropoff_longitude_round3
+        feature_selection.drop_columns:
+        - id
+        - trip_duration
+        - pickup_datetime
+        feature_selection.early_stopping_rounds: 50
+        feature_selection.epoches: 2000
+        feature_selection.eta: 0.05
+        feature_selection.eval_metric: rmse
+        feature_selection.lambda: 2
+        feature_selection.max_depth: 5
+        feature_selection.min_child_weight: 10
+        feature_selection.nthread: -1
+        feature_selection.objective: reg:squarederror
+        feature_selection.seed: 2019
+        feature_selection.split: 0.9
+        feature_selection.subsample: 0.9
+    outs:
+    - path: data/feature_selection/feature_selection_data.csv
+      md5: f3ec53dfba5bb67dd9c238868f35de13
+      size: 49589214
+  training:
+    cmd: python src/training.py --config=params.yaml
+    deps:
+    - path: data/feature_selection/feature_selection_data.csv
+      md5: f3ec53dfba5bb67dd9c238868f35de13
+      size: 49589214
+    - path: src/training.py
+      md5: 0202b26b2420203ccc7d988165ae85dd
+      size: 4634
+    params:
+      params.yaml:
+        mlflow_config.experiment_name: CATBoost regression 3
+        mlflow_config.registered_model_name: CatBoostNYCModel
+        mlflow_config.remote_server_uri: http://localhost:5000
+        mlflow_config.run_name: mlops
+        training.bagging_temperature:
+        - 0.1
+        - 0.2
+        - 0.3
+        training.depth:
+        - 12
+        training.eval_metric:
+        - RMSE
+        training.iterations:
+        - 2000
+        training.learning_rate:
+        - 0.01
+        - 0.02
+        - 0.03
+        training.metric_period:
+        - 75
+        training.od_type:
+        - Iter
+        training.od_wait:
+        - 100
+        training.random_seed:
+        - 23
+        training.split: 0.9
+        training.task_type:
+        - GPU

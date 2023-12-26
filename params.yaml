@@ -1,0 +1,51 @@
+base:
+  project: NYC-Taxi-Trip-Duration-Prediction
+  target_column: trip_duration
+
+get_data:
+  raw_data_csv: data/raw/nyc_taxi_trip_duration.csv
+
+feature_engineering:
+  feature_engineering_data_csv: data/feature_engineering/feature_engineering_data.csv
+  drop_columns: ["dropoff_datetime", "store_and_fwd_flag"]
+  cont_cols: ['pickup_longitude','pickup_latitude','dropoff_longitude','dropoff_latitude','trip_duration']
+
+
+feature_selection:
+  cont_cols: ['pickup_longitude', 'pickup_latitude', 'dropoff_longitude', 'dropoff_latitude', 'trip_duration', 'distance', 'l50distance', 'pickup_latitude_round3','pickup_longitude_round3', 'dropoff_latitude_round3','dropoff_longitude_round3']
+  feature_selection_data_csv: data/feature_selection/feature_selection_data.csv
+  drop_columns: ['id', 'trip_duration', 'pickup_datetime']
+  split: 0.9
+  objective: "reg:squarederror"
+  eval_metric: "rmse"
+  eta: 0.05
+  min_child_weight: 10
+  subsample: 0.9
+  colsample_bytree: 0.7
+  max_depth: 5
+  seed: 2019
+  nthread: -1
+  lambda: 2
+  epoches: 2000
+  early_stopping_rounds: 50
+
+training:
+  split: 0.9
+  iterations: [2000]
+  learning_rate: [0.01, 0.02, 0.03]
+  depth: [12]
+  eval_metric: ["RMSE"]
+  random_seed: [23]
+  bagging_temperature: [0.1, 0.2, 0.3]
+  od_type: ['Iter']
+  metric_period: [75]
+  od_wait: [100]
+  task_type: ['GPU']
+        
+mlflow_config:
+  experiment_name: CATBoost regression 
+  run_name: mlops
+  registered_model_name: CatBoostNYCModel
+  remote_server_uri: http://localhost:5000
+
+webapp_model_dir: saved_models/model.pth
