@@ -25,7 +25,10 @@ This project focuses on predicting the total duration of taxi trips in New York 
 
 ## Features
 
-[List key features and functionalities of the project.]
+- [Feature Engineering](src/feature_engineering.py)
+- [Feature Selection](src/feature_selection.py)
+- [Training](src/training.py)
+- [Best Model Selection](src/log_production_model.py)
 
 ## Requirements
 
@@ -71,21 +74,32 @@ dvc repro
 ## Data
 
 [Provide information about the data used in the project. Include the source, format, and any preprocessing steps.]
-- Check notebooks folder to look at all the Exploratory Data Anlaysis Done
-- Check notebooks folder to see all the experientation done before creating the final pipeline
+- The data is from the [kaggle competetion](https://www.kaggle.com/c/nyc-taxi-trip-duration/data)
+- Data fields
+    id - a unique identifier for each trip
+    vendor_id - a code indicating the provider associated with the trip record
+    pickup_datetime - date and time when the meter was engaged
+    dropoff_datetime - date and time when the meter was disengaged
+    passenger_count - the number of passengers in the vehicle (driver entered value)
+    pickup_longitude - the longitude where the meter was engaged
+    pickup_latitude - the latitude where the meter was engaged
+    dropoff_longitude - the longitude where the meter was disengaged
+    dropoff_latitude - the latitude where the meter was disengaged
+    store_and_fwd_flag - This flag indicates whether the trip record was held in vehicle memory before sending to the vendor because the vehicle did not have a connection to the server - Y=store and forward; N=not a store and forward trip
+    trip_duration - duration of the trip in seconds
+
+- Check [notebook](notebooks\NYC-Taxi-Trip-Duration-Prediction.ipynb) to look at all the _Exploratory Data Anlaysis_ and _Experimentations_ done.
 
 ## Model Training
 
-[Explain how to train the machine learning model. Include details about the algorithm, hyperparameters, and any other relevant information.]
-
 ```bash
 # Train the model
-python train.py --data train_data.csv --model saved_model.pkl
+dvc repro
 ```
 
 ## Evaluation
 
-[Describe the metrics and methods used to evaluate the model.]
+- R2 score is used to evaluate the model
 
 ## Results
 
@@ -99,11 +113,3 @@ python train.py --data train_data.csv --model saved_model.pkl
 ## License
 
 [Specify the project's license. For example, MIT License.]
-
-## Contact Information
-
-[Provide contact information for the project maintainer or team.]
-
----
-
-Feel free to customize this template based on the specific details of your project. Remember to keep the README concise, well-organized, and easy to follow.
