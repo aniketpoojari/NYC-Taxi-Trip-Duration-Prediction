@@ -1,4 +1,4 @@
-## 📝 Description
+# 📝 Description
 
 At some point or the other almost each one of us has used an Ola or Uber for taking a ride.
 
@@ -12,14 +12,11 @@ In this competition, we are challenged to build a model that predicts the total 
 - Check notebooks folder to look at all the Exploratory Data Anlaysis Done
 - Check notebooks folder to see all the experientation done before creating the final pipeline
 
-## Pipeline
-- DVC is used to create pipeline
-- Change the values in the params.yaml to test different values that effest the model
-
 ## :gear: Requirements
 - Use ```pip install -r requirements.txt``` to install the requirements
 
 ## :runner: How to run
+- Change the values in the params.yaml to test different values that effest the model
 - Use ```dvc add data\raw\<filename>``` to make dvc track the input file
 - Use ```mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./artifacts --host 0.0.0.0``` in the project directory to run mlflow server in the background before running the pipeline
 - Use ```dvc repro``` to run the pipeline
