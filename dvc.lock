@@ -71,7 +71,7 @@ stages:
         mlflow_config.experiment_name: CATBoost regression 1
         mlflow_config.registered_model_name: CatBoostNYCModel
         mlflow_config.remote_server_uri: http://localhost:5000
-        mlflow_config.run_name: mlops
+        mlflow_config.run_name: mlops 2
         training.bagging_temperature:
         - 0.1
         - 0.2
@@ -81,7 +81,7 @@ stages:
         training.eval_metric:
         - RMSE
         training.iterations:
-        - 2000
+        - 1000
         training.learning_rate:
         - 0.01
         - 0.02

@@ -31,7 +31,7 @@ feature_selection:
 
 training:
   split: 0.9
-  iterations: [2000]
+  iterations: [1000]
   learning_rate: [0.01, 0.02, 0.03]
   depth: [12]
   eval_metric: ["RMSE"]
@@ -44,7 +44,7 @@ training:
         
 mlflow_config:
   experiment_name: CATBoost regression 1
-  run_name: mlops
+  run_name: mlops 2
   registered_model_name: CatBoostNYCModel
   remote_server_uri: http://localhost:5000
 
