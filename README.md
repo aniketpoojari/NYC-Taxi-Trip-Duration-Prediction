@@ -1,5 +1,6 @@
 ## 📝 Description
-- At some point or the other almost each one of us has used an Ola or Uber for taking a ride.
+
+At some point or the other almost each one of us has used an Ola or Uber for taking a ride.
 
 Ride hailing services are services that use online-enabled platforms to connect between passengers and local drivers using their personal vehicles. In most cases they are a comfortable method for door-to-door transport. Usually they are cheaper than using licensed taxicabs. Examples of ride hailing services include Uber and Lyft.
 
