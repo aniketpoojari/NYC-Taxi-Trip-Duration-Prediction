@@ -1,4 +1,4 @@
-# Project Name
+# 🚀 Project Name 
 
 NYC Taxi Trip duration prediction
 
@@ -14,21 +14,21 @@ NYC Taxi Trip duration prediction
 - [Evaluation](#evaluation)
 - [Results](#results)
 
-## Introduction
+## 📄 Introduction
 
 In our fast-paced world, services like Ola and Uber make getting around easy and affordable. They connect passengers with local drivers through online platforms. The challenge we're facing is improving how taxis are dispatched, specifically predicting how long a driver will be busy with a passenger. If we can accurately estimate when a taxi will be available, it would greatly improve the assignment of drivers to pickup requests.
 
 This project focuses on predicting the total duration of taxi trips in New York City. We're looking for models that can forecast how long a ride will take. The goal is to enhance the efficiency of ride-hailing services and make the experience smoother for both drivers and passengers.
 
-## Features
+## 🌟 Features
 
-- [Exploratory Data Analysis](notebooks/NYC-Taxi-Trip-Duration-Prediction.ipynb)
+- [Exploratory Data Analysis and Experiments](notebooks/NYC-Taxi-Trip-Duration-Prediction.ipynb)
 - [Feature Engineering](src/feature_engineering.py)
 - [Feature Selection](src/feature_selection.py)
 - [Training](src/training.py)
 - [Best Model Selection](src/log_production_model.py)
 
-## Requirements
+## 🛠️ Requirements
 
 - yaml
 - argparse
@@ -41,7 +41,7 @@ This project focuses on predicting the total duration of taxi trips in New York 
 - math
 - urllib
 
-## Installation
+## 🚚 Installation
 
 ```bash
 # Clone the repository
@@ -54,7 +54,7 @@ cd NYC-Taxi-Trip-Duration-Prediction
 pip install -r requirements.txt
 ```
 
-## Usage
+## 🚀 Usage
 
 ```python
 # Add your data in the data\raw folder and track it by DVC using the command:
@@ -69,7 +69,7 @@ mlflow server --backend-store-uri sqlite:///mlflow.db --default-artifact-root ./
 dvc repro
 ```
 
-## Data
+## 📊 Data
 
 - The data is from the [kaggle competetion](https://www.kaggle.com/c/nyc-taxi-trip-duration/data)
 - Data fields
@@ -87,18 +87,18 @@ dvc repro
 
 - Check [notebook](notebooks/NYC-Taxi-Trip-Duration-Prediction.ipynb) to look at all the _Exploratory Data Anlaysis_ and _Experimentations_ done.
 
-## Model Training
+## 🤖 Model Training
 
 ```bash
 # Train the model
 dvc repro
 ```
 
-## Evaluation
+## 📈 Evaluation
 
 - R2 score is used to evaluate the model
 
-## Results
+## 🎉 Results
 
 - Go to localhost:5000/ to look at results on MLflow server.
 - saved_models folder will contain the final model after the pipeline is executed using MLFlow

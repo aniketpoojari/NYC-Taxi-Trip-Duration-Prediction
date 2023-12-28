@@ -103,6 +103,9 @@ stages:
     - path: src/log_production_model.py
       md5: 6467bcab2736140f2000e644f44773fa
       size: 1799
+    params:
+      params.yaml:
+        mlflow_config.experiment_name: CATBoost regression 1
     outs:
     - path: saved_models/model.cb
       md5: 2deebe90054aa8452481e3b013175ee0
