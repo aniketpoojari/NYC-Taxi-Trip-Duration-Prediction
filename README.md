@@ -13,9 +13,6 @@ NYC Taxi Trip duration prediction
 - [Model Training](#model-training)
 - [Evaluation](#evaluation)
 - [Results](#results)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact Information](#contact-information)
 
 ## Introduction
 
