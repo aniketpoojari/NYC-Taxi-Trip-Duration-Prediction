@@ -102,13 +102,5 @@ dvc repro
 
 ## Results
 
-[Present and interpret the results of the model. Include visualizations if applicable.]
+- Go to localhost:5000/ to look at results on MLflow server.
 - saved_models folder will contain the final model after the pipeline is executed using MLFlow
-
-## Contributing
-
-[Explain how others can contribute to the project. Include guidelines for reporting issues, suggesting enhancements, and submitting pull requests.]
-
-## License
-
-[Specify the project's license. For example, MIT License.]
