@@ -22,6 +22,7 @@ This project focuses on predicting the total duration of taxi trips in New York 
 
 ## Features
 
+- [Exploratory Data Analysis](notebooks/NYC-Taxi-Trip-Duration-Prediction.ipynb)
 - [Feature Engineering](src/feature_engineering.py)
 - [Feature Selection](src/feature_selection.py)
 - [Training](src/training.py)
